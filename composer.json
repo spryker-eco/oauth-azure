@@ -1,0 +1,38 @@
+{
+  "name": "spryker-eco/oauth-azure",
+  "type": "library",
+  "description": "OauthAzure module",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.3",
+    "thenetworg/oauth2-azure": "^2.0.0"
+  },
+  "require-dev": {
+  },
+  "suggest": {
+  },
+  "autoload": {
+    "psr-4": {
+      "SprykerEco\\": "src/SprykerEco/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
+    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
