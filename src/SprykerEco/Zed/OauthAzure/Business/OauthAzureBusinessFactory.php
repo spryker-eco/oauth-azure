@@ -14,6 +14,12 @@ use SprykerEco\Zed\OauthAzure\Business\Creator\AuthenticationLinkCreator;
 use SprykerEco\Zed\OauthAzure\Business\Creator\AuthenticationLinkCreatorInterface;
 use SprykerEco\Zed\OauthAzure\Business\Generator\StateParameterGenerator;
 use SprykerEco\Zed\OauthAzure\Business\Generator\StateParameterGeneratorInterface;
+use SprykerEco\Zed\OauthAzure\Business\Mapper\ResourceOwnerMapper;
+use SprykerEco\Zed\OauthAzure\Business\Mapper\ResourceOwnerMapperInterface;
+use SprykerEco\Zed\OauthAzure\Business\Reader\ResourceOwnerReader;
+use SprykerEco\Zed\OauthAzure\Business\Reader\ResourceOwnerReaderInterface;
+use SprykerEco\Zed\OauthAzure\Business\Validator\StateParameterValidator;
+use SprykerEco\Zed\OauthAzure\Business\Validator\StateParameterValidatorInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\Service\OauthAzureToUtilTextServiceInterface;
@@ -53,6 +59,34 @@ class OauthAzureBusinessFactory extends AbstractBusinessFactory
             $this->getSessionClient(),
             $this->getOauthProvider(),
             $this->createStateParameterGenerator()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\OauthAzure\Business\Validator\StateParameterValidatorInterface
+     */
+    public function createStateParameterValidator(): StateParameterValidatorInterface
+    {
+        return new StateParameterValidator($this->getSessionClient());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\OauthAzure\Business\Mapper\ResourceOwnerMapperInterface
+     */
+    public function createResourceOwnerMapper(): ResourceOwnerMapperInterface
+    {
+        return new ResourceOwnerMapper();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\OauthAzure\Business\Reader\ResourceOwnerReaderInterface
+     */
+    public function createResourceOwnerReader(): ResourceOwnerReaderInterface
+    {
+        return new ResourceOwnerReader(
+            $this->getOauthProvider(),
+            $this->createResourceOwnerMapper(),
+            $this->createStateParameterValidator()
         );
     }
 

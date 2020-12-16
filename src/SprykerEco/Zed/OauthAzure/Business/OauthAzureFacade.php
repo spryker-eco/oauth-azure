@@ -8,6 +8,8 @@
 namespace SprykerEco\Zed\OauthAzure\Business;
 
 use Generated\Shared\Transfer\OauthAuthenticationLinkTransfer;
+use Generated\Shared\Transfer\ResourceOwnerRequestTransfer;
+use Generated\Shared\Transfer\ResourceOwnerResponseTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -27,5 +29,22 @@ class OauthAzureFacade extends AbstractFacade implements OauthAzureFacadeInterfa
         return $this->getFactory()
             ->createAuthenticationLinkCreator()
             ->createAuthenticationLink();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\ResourceOwnerResponseTransfer
+     */
+    public function getResourceOwner(
+        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
+    ): ResourceOwnerResponseTransfer {
+        return $this->getFactory()
+            ->createResourceOwnerReader()
+            ->getResourceOwner($resourceOwnerRequestTransfer);
     }
 }

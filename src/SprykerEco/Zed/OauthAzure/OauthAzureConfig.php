@@ -13,6 +13,7 @@ use SprykerEco\Shared\OauthAzure\OauthAzureConstants;
 class OauthAzureConfig extends AbstractBundleConfig
 {
     public const SESSION_KEY_STATE = 'Azure';
+    public const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
 
     protected const AUTHENTICATION_LINK_TARGET = '_self';
     protected const AUTHENTICATION_LINK_TEXT = 'Azure';
@@ -109,6 +110,6 @@ class OauthAzureConfig extends AbstractBundleConfig
      */
     public function getScope(): array
     {
-        return ['openid email'];
+        return ['openid profile'];
     }
 }
