@@ -5,27 +5,27 @@
   "license": "MIT",
   "require": {
     "php": ">=7.3",
+    "league/oauth2-client": "^2.0.0",
+    "spryker/kernel": "3.30.0",
+    "spryker/security-gui-extension": "^1.0.0",
+    "spryker/session": "^4.0.0",
+    "spryker/util-text": "^1.0.0",
     "thenetworg/oauth2-azure": "^2.0.0"
   },
   "require-dev": {
+    "spryker/code-sniffer": "*"
   },
-  "suggest": {
-  },
+  "suggest": {},
   "autoload": {
     "psr-4": {
       "SprykerEco\\": "src/SprykerEco/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
-    }
-  },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
-    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/",
+    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/"
   },
   "extra": {
     "branch-alias": {
