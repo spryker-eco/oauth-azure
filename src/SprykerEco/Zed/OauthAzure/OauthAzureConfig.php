@@ -16,7 +16,7 @@ class OauthAzureConfig extends AbstractBundleConfig
     public const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
 
     protected const AUTHENTICATION_LINK_TARGET = '_self';
-    protected const AUTHENTICATION_LINK_TEXT = 'Azure';
+    protected const AUTHENTICATION_LINK_TEXT = 'Login with Microsoft Azure Active Directory';
 
     /**
      * @uses \TheNetworg\OAuth2\Client\Provider\Azure::ENDPOINT_VERSION_2_0
