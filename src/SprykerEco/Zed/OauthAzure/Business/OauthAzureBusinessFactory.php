@@ -20,6 +20,8 @@ use SprykerEco\Zed\OauthAzure\Business\Reader\ResourceOwnerReader;
 use SprykerEco\Zed\OauthAzure\Business\Reader\ResourceOwnerReaderInterface;
 use SprykerEco\Zed\OauthAzure\Business\Validator\StateParameterValidator;
 use SprykerEco\Zed\OauthAzure\Business\Validator\StateParameterValidatorInterface;
+use SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriter;
+use SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriterInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\Service\OauthAzureToUtilTextServiceInterface;
@@ -50,15 +52,23 @@ class OauthAzureBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriterInterface
+     */
+    public function createStateParameterWriter(): StateParameterWriterInterface
+    {
+        return new StateParameterWriter($this->getSessionClient());
+    }
+
+    /**
      * @return \SprykerEco\Zed\OauthAzure\Business\Creator\AuthenticationLinkCreatorInterface
      */
     public function createAuthenticationLinkCreator(): AuthenticationLinkCreatorInterface
     {
         return new AuthenticationLinkCreator(
             $this->getConfig(),
-            $this->getSessionClient(),
             $this->getOauthProvider(),
-            $this->createStateParameterGenerator()
+            $this->createStateParameterGenerator(),
+            $this->createStateParameterWriter()
         );
     }
 

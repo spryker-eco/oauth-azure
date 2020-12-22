@@ -33,7 +33,7 @@ class GetResourceOwnerTest extends Unit
     protected const SOME_STATE = 'SOME_STATE';
     protected const SOME_ACCESS_TOKEN = 'SOME_ACCESS_TOKEN';
     protected const SOME_RESOURCE_OWNER_ID = 'SOME_RESOURCE_OWNER_ID';
-    protected const SOME_RANDOM_STATE = 'SOME_RANDOM_STATE';
+    protected const SOME_INVALID_STATE = 'SOME_INVALID_STATE';
 
     /**
      * @var \SprykerEcoTest\Zed\OauthAzure\OauthAzureBusinessTester
@@ -51,7 +51,7 @@ class GetResourceOwnerTest extends Unit
         );
 
         $this->tester->setOauthAzureToLeagueOauthAzureProviderAdapter(
-            $this->crateOauthAzureToLeagueOauthAzureProviderAdapterMock()
+            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock()
         );
 
         $resourceOwnerRequestTransfer = (new ResourceOwnerRequestTransfer())
@@ -60,7 +60,7 @@ class GetResourceOwnerTest extends Unit
 
         // Act
         $resourceOwnerResponseTransfer = $this->tester
-            ->getOauthAzureFacade()
+            ->getFacade()
             ->getResourceOwner($resourceOwnerRequestTransfer);
 
         //Assert
@@ -88,7 +88,7 @@ class GetResourceOwnerTest extends Unit
         $this->expectException(RequiredTransferPropertyException::class);
 
         // Act
-        $this->tester->getOauthAzureFacade()->getResourceOwner($resourceOwnerRequestTransfer);
+        $this->tester->getFacade()->getResourceOwner($resourceOwnerRequestTransfer);
     }
 
     /**
@@ -114,7 +114,7 @@ class GetResourceOwnerTest extends Unit
         );
 
         $this->tester->setOauthAzureToLeagueOauthAzureProviderAdapter(
-            $this->crateOauthAzureToLeagueOauthAzureProviderAdapterMock()
+            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock()
         );
 
         $resourceOwnerRequestTransfer = (new ResourceOwnerRequestTransfer())
@@ -123,7 +123,7 @@ class GetResourceOwnerTest extends Unit
 
         // Act
         $resourceOwnerResponseTransfer = $this->tester
-            ->getOauthAzureFacade()
+            ->getFacade()
             ->getResourceOwner($resourceOwnerRequestTransfer);
 
         //Assert
@@ -162,7 +162,7 @@ class GetResourceOwnerTest extends Unit
 
         // Act
         $resourceOwnerResponseTransfer = $this->tester
-            ->getOauthAzureFacade()
+            ->getFacade()
             ->getResourceOwner($resourceOwnerRequestTransfer);
 
         //Assert
@@ -182,8 +182,8 @@ class GetResourceOwnerTest extends Unit
     public function getResourceOwnerMustFailWhenExceptionIsThrownDataProvider(): array
     {
         return [
-            [$this->crateOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(true)],
-            [$this->crateOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(false, true)],
+            [$this->createOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(true)],
+            [$this->createOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(false, true)],
         ];
     }
 
@@ -202,7 +202,7 @@ class GetResourceOwnerTest extends Unit
             ->getMock();
 
         $oauthAzureToSessionClientBridgeMock->method('get')
-            ->willReturn($validState ? $state : static::SOME_RANDOM_STATE);
+            ->willReturn($validState ? $state : static::SOME_INVALID_STATE);
 
         return $oauthAzureToSessionClientBridgeMock;
     }
@@ -210,7 +210,7 @@ class GetResourceOwnerTest extends Unit
     /**
      * @return \PHPUnit\Framework\MockObject\MockObject|\SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface
      */
-    protected function crateOauthAzureToLeagueOauthAzureProviderAdapterMock(): OauthAzureToOauthAdapterInterface
+    protected function createOauthAzureToLeagueOauthAzureProviderAdapterMock(): OauthAzureToOauthAdapterInterface
     {
         $oauthAzureToLeagueOauthAzureProviderAdapterMock = $this
             ->getMockBuilder(OauthAzureToOauthAdapterInterface::class)
@@ -231,7 +231,7 @@ class GetResourceOwnerTest extends Unit
      *
      * @return \PHPUnit\Framework\MockObject\MockObject|\SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface
      */
-    protected function crateOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(
+    protected function createOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(
         bool $getAccessTokenThrowsException = false,
         bool $getResourceOwnerThrowsException = false
     ): OauthAzureToOauthAdapterInterface {

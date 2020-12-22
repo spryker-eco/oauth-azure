@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\OauthAzure\Business\Creator;
 
 use Generated\Shared\Transfer\OauthAuthenticationLinkTransfer;
 use SprykerEco\Zed\OauthAzure\Business\Generator\StateParameterGeneratorInterface;
-use SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface;
+use SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriterInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface;
 use SprykerEco\Zed\OauthAzure\OauthAzureConfig;
 
@@ -23,11 +23,6 @@ class AuthenticationLinkCreator implements AuthenticationLinkCreatorInterface
     protected $oauthAzureConfig;
 
     /**
-     * @var \SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface
-     */
-    protected $sessionClient;
-
-    /**
      * @var \SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface
      */
     protected $oauthAdapter;
@@ -38,21 +33,26 @@ class AuthenticationLinkCreator implements AuthenticationLinkCreatorInterface
     protected $stateParameterGenerator;
 
     /**
+     * @var \SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriterInterface
+     */
+    protected $stateParameterWriter;
+
+    /**
      * @param \SprykerEco\Zed\OauthAzure\OauthAzureConfig $oauthAzureConfig
-     * @param \SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface $sessionClient
      * @param \SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface $oauthAdapter
      * @param \SprykerEco\Zed\OauthAzure\Business\Generator\StateParameterGeneratorInterface $stateParameterGenerator
+     * @param \SprykerEco\Zed\OauthAzure\Business\Writer\StateParameterWriterInterface $stateParameterWriter
      */
     public function __construct(
         OauthAzureConfig $oauthAzureConfig,
-        OauthAzureToSessionClientInterface $sessionClient,
         OauthAzureToOauthAdapterInterface $oauthAdapter,
-        StateParameterGeneratorInterface $stateParameterGenerator
+        StateParameterGeneratorInterface $stateParameterGenerator,
+        StateParameterWriterInterface $stateParameterWriter
     ) {
         $this->oauthAzureConfig = $oauthAzureConfig;
-        $this->sessionClient = $sessionClient;
         $this->oauthAdapter = $oauthAdapter;
         $this->stateParameterGenerator = $stateParameterGenerator;
+        $this->stateParameterWriter = $stateParameterWriter;
     }
 
     /**
@@ -62,7 +62,7 @@ class AuthenticationLinkCreator implements AuthenticationLinkCreatorInterface
     {
         $stateParameter = $this->stateParameterGenerator->generateStateParameter();
 
-        $this->sessionClient->set($stateParameter, $stateParameter);
+        $this->stateParameterWriter->storeStateParameter($stateParameter);
 
         $href = $this->oauthAdapter->getAuthorizationUrl([
             static::QUERY_PARAMETER_STATE => $stateParameter,

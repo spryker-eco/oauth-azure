@@ -38,7 +38,7 @@ class CreateAuthenticationLinkTest extends Unit
 
         // Act
         $oauthAuthenticationLinkTransfer = $this->tester
-            ->getOauthAzureFacade()
+            ->getFacade()
             ->createAuthenticationLink();
 
         //Assert

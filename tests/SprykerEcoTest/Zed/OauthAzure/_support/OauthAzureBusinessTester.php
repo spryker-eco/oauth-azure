@@ -8,7 +8,6 @@
 namespace SprykerEcoTest\Zed\OauthAzure;
 
 use Codeception\Actor;
-use SprykerEco\Zed\OauthAzure\Business\OauthAzureFacadeInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface;
 use SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface;
 use SprykerEco\Zed\OauthAzure\OauthAzureDependencyProvider;
@@ -26,20 +25,13 @@ use SprykerEco\Zed\OauthAzure\OauthAzureDependencyProvider;
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method void pause()
+ * @method \SprykerEco\Zed\OauthAzure\Business\OauthAzureFacadeInterface getFacade()
  *
  * @SuppressWarnings(PHPMD)
  */
 class OauthAzureBusinessTester extends Actor
 {
     use _generated\OauthAzureBusinessTesterActions;
-
-    /**
-     * @return \SprykerEco\Zed\OauthAzure\Business\OauthAzureFacadeInterface
-     */
-    public function getOauthAzureFacade(): OauthAzureFacadeInterface
-    {
-        return $this->getLocator()->oauthAzure()->facade();
-    }
 
     /**
      * @param \SprykerEco\Zed\OauthAzure\Dependency\Client\OauthAzureToSessionClientInterface $sessionClient
