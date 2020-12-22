@@ -4,13 +4,22 @@
   "description": "OauthAzure module",
   "license": "MIT",
   "require": {
+    "league/oauth2-client": "^2.0.0",
     "php": ">=7.3",
+    "spryker/kernel": "3.30.0",
+    "spryker/log": "^3.7.0",
+    "spryker/security-gui-extension": "^1.0.0",
+    "spryker/security-oauth-user-extension": "^1.0.0",
+    "spryker/session": "^4.0.0",
+    "spryker/transfer": "^3.25.0",
+    "spryker/util-text": "^1.0.0",
     "thenetworg/oauth2-azure": "^2.0.0"
   },
   "require-dev": {
+    "spryker/code-sniffer": "*",
+    "spryker/testify": "*"
   },
-  "suggest": {
-  },
+  "suggest": [],
   "autoload": {
     "psr-4": {
       "SprykerEco\\": "src/SprykerEco/"
@@ -24,8 +33,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/",
-    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml src/ tests/"
+    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/",
+    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/"
   },
   "extra": {
     "branch-alias": {
