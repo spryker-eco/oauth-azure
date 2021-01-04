@@ -1,0 +1,18 @@
+{
+    "error": [],
+    "warning": [
+        {
+            "severity": "info",
+            "line_from": 102,
+            "line_to": 102,
+            "type": "PossiblyNullReference",
+            "message": "Cannot call method error on possibly null value",
+            "file_name": "vendor/spryker-eco/oauth-azure/src/SprykerEco/Zed/OauthAzure/Business/Reader/ResourceOwnerReader.php",
+            "snippet": "            $this->getLogger()->error($exception->getMessage(), ['exception' => $exception]);",
+            "selected_text": "error",
+            "error_level": 3,
+            "shortcode": 83
+        }
+    ],
+    "deprecation": []
+}
