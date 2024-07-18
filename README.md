@@ -11,4 +11,4 @@ composer require spryker-eco/oauth-azure
 
 ## Documentation
 
-[Spryker Documentation](https://documentation.spryker.com/module_guide/overview.htm)
+[Spryker Documentation](https://docs.spryker.com/docs/pbc/all/identity-access-management/202404.0/install-and-upgrade/install-microsoft-azure-active-directory.html)
