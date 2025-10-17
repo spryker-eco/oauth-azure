@@ -112,4 +112,18 @@ class OauthAzureConfig extends AbstractBundleConfig
     {
         return ['openid profile'];
     }
+
+    /**
+     * Specification:
+     * - The tenant for the OAuth azure provider.
+     * - Accepts 'common', 'organizations', 'consumers' or specific tenant ID.
+     *
+     * @api
+     *
+     * @return string
+     */
+    public function getTenant(): string
+    {
+        return $this->get(OauthAzureConstants::TENANT);
+    }
 }

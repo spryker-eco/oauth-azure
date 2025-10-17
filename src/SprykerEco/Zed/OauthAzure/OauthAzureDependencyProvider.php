@@ -96,6 +96,7 @@ class OauthAzureDependencyProvider extends AbstractBundleDependencyProvider
             'pathAuthorize' => $this->getConfig()->getPathAuthorize(),
             'pathToken' => $this->getConfig()->getPathToken(),
             'scope' => $this->getConfig()->getScope(),
+            'tenant' => $this->getConfig()->getTenant(),
         ]);
     }
 }
