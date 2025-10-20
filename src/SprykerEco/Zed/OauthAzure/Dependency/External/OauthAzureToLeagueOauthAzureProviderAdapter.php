@@ -5,14 +5,10 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Dependency\External;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
-use League\OAuth2\Client\Token\AccessTokenInterface;
 
 class OauthAzureToLeagueOauthAzureProviderAdapter implements OauthAzureToOauthAdapterInterface
 {
@@ -45,7 +41,7 @@ class OauthAzureToLeagueOauthAzureProviderAdapter implements OauthAzureToOauthAd
      *
      * @return \League\OAuth2\Client\Token\AccessTokenInterface
      */
-    public function getAccessToken($grant, array $options = []): AccessTokenInterface
+    public function getAccessToken($grant, array $options = [])
     {
         return $this->provider->getAccessToken($grant, $options);
     }
@@ -55,7 +51,7 @@ class OauthAzureToLeagueOauthAzureProviderAdapter implements OauthAzureToOauthAd
      *
      * @return \League\OAuth2\Client\Provider\ResourceOwnerInterface
      */
-    public function getResourceOwner(AccessToken $accessToken): ResourceOwnerInterface
+    public function getResourceOwner(AccessToken $accessToken)
     {
         return $this->provider->getResourceOwner($accessToken);
     }

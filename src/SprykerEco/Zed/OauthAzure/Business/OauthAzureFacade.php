@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Business;
 
 use Generated\Shared\Transfer\OauthAuthenticationLinkTransfer;
@@ -43,7 +41,7 @@ class OauthAzureFacade extends AbstractFacade implements OauthAzureFacadeInterfa
      * @return \Generated\Shared\Transfer\ResourceOwnerResponseTransfer
      */
     public function getResourceOwner(
-        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer,
+        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
     ): ResourceOwnerResponseTransfer {
         return $this->getFactory()
             ->createResourceOwnerReader()

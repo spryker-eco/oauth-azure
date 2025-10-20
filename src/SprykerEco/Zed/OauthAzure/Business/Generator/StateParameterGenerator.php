@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Business\Generator;
 
 use SprykerEco\Zed\OauthAzure\Business\Builder\StateParameterSessionKeyBuilderInterface;
@@ -32,7 +30,7 @@ class StateParameterGenerator implements StateParameterGeneratorInterface
      */
     public function __construct(
         OauthAzureToUtilTextServiceInterface $utilTextService,
-        StateParameterSessionKeyBuilderInterface $stateParameterSessionKeyBuilder,
+        StateParameterSessionKeyBuilderInterface $stateParameterSessionKeyBuilder
     ) {
         $this->utilTextService = $utilTextService;
         $this->stateParameterSessionKeyBuilder = $stateParameterSessionKeyBuilder;

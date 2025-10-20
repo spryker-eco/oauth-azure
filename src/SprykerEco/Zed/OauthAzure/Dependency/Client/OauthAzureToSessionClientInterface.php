@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Dependency\Client;
 
 interface OauthAzureToSessionClientInterface
@@ -17,7 +15,7 @@ interface OauthAzureToSessionClientInterface
      *
      * @return void
      */
-    public function set(string $name, $value): void;
+    public function set(string $name, $value);
 
     /**
      * @param string $name The attribute name

@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEcoTest\Zed\OauthAzure\Business\Facade;
 
 use Codeception\Test\Unit;
@@ -32,13 +30,9 @@ use SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterf
 class GetResourceOwnerTest extends Unit
 {
     protected const SOME_CODE = 'SOME_CODE';
-
     protected const SOME_STATE = 'SOME_STATE';
-
     protected const SOME_ACCESS_TOKEN = 'SOME_ACCESS_TOKEN';
-
     protected const SOME_RESOURCE_OWNER_ID = 'SOME_RESOURCE_OWNER_ID';
-
     protected const SOME_INVALID_STATE = 'SOME_INVALID_STATE';
 
     /**
@@ -53,11 +47,11 @@ class GetResourceOwnerTest extends Unit
     {
         //Arrange
         $this->tester->setOauthAzureToSessionClientBridge(
-            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE),
+            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE)
         );
 
         $this->tester->setOauthAzureToLeagueOauthAzureProviderAdapter(
-            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock(),
+            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock()
         );
 
         $resourceOwnerRequestTransfer = (new ResourceOwnerRequestTransfer())
@@ -72,11 +66,11 @@ class GetResourceOwnerTest extends Unit
         //Assert
         $this->assertTrue(
             $resourceOwnerResponseTransfer->getIsSuccessful(),
-            'Expected that `IsSuccessful` flag equals to true.',
+            'Expected that `IsSuccessful` flag equals to true.'
         );
         $this->assertNotEmpty(
             $resourceOwnerResponseTransfer->getResourceOwner(),
-            'Expected that resource owner is provided.',
+            'Expected that resource owner is provided.'
         );
     }
 
@@ -88,7 +82,7 @@ class GetResourceOwnerTest extends Unit
      * @return void
      */
     public function testGetResourceOwnerMustFailWhenNoRequireDataProvided(
-        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer,
+        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
     ): void {
         // Assert
         $this->expectException(RequiredTransferPropertyException::class);
@@ -98,7 +92,7 @@ class GetResourceOwnerTest extends Unit
     }
 
     /**
-     * @return array<array<\Generated\Shared\Transfer\ResourceOwnerRequestTransfer>>
+     * @return \Generated\Shared\Transfer\ResourceOwnerRequestTransfer[][]
      */
     public function getResourceOwnerMustFailWhenNoRequireDataProvidedDataProvider(): array
     {
@@ -116,11 +110,11 @@ class GetResourceOwnerTest extends Unit
     {
         //Arrange
         $this->tester->setOauthAzureToSessionClientBridge(
-            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE, false),
+            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE, false)
         );
 
         $this->tester->setOauthAzureToLeagueOauthAzureProviderAdapter(
-            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock(),
+            $this->createOauthAzureToLeagueOauthAzureProviderAdapterMock()
         );
 
         $resourceOwnerRequestTransfer = (new ResourceOwnerRequestTransfer())
@@ -135,11 +129,11 @@ class GetResourceOwnerTest extends Unit
         //Assert
         $this->assertFalse(
             $resourceOwnerResponseTransfer->getIsSuccessful(),
-            'Expected that `IsSuccessful` flag equals to false.',
+            'Expected that `IsSuccessful` flag equals to false.'
         );
         $this->assertEmpty(
             $resourceOwnerResponseTransfer->getResourceOwner(),
-            'No resource owner is expected to be provided.',
+            'No resource owner is expected to be provided.'
         );
     }
 
@@ -151,15 +145,15 @@ class GetResourceOwnerTest extends Unit
      * @return void
      */
     public function testGetResourceOwnerMustFailWhenExceptionIsThrown(
-        $oauthAzureToLeagueOauthAzureProviderAdapterMock,
+        $oauthAzureToLeagueOauthAzureProviderAdapterMock
     ): void {
         //Arrange
         $this->tester->setOauthAzureToSessionClientBridge(
-            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE),
+            $this->createOauthAzureToSessionClientBridgeMock(static::SOME_STATE)
         );
 
         $this->tester->setOauthAzureToLeagueOauthAzureProviderAdapter(
-            $oauthAzureToLeagueOauthAzureProviderAdapterMock,
+            $oauthAzureToLeagueOauthAzureProviderAdapterMock
         );
 
         $resourceOwnerRequestTransfer = (new ResourceOwnerRequestTransfer())
@@ -174,16 +168,16 @@ class GetResourceOwnerTest extends Unit
         //Assert
         $this->assertFalse(
             $resourceOwnerResponseTransfer->getIsSuccessful(),
-            'Expected that `IsSuccessful` flag equals to false.',
+            'Expected that `IsSuccessful` flag equals to false.'
         );
         $this->assertEmpty(
             $resourceOwnerResponseTransfer->getResourceOwner(),
-            'No resource owner is expected to be provided.',
+            'No resource owner is expected to be provided.'
         );
     }
 
     /**
-     * @return array<array<\PHPUnit\Framework\MockObject\MockObject>>|array<array<\SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface>>
+     * @return \PHPUnit\Framework\MockObject\MockObject[][]|\SprykerEco\Zed\OauthAzure\Dependency\External\OauthAzureToOauthAdapterInterface[][]
      */
     public function getResourceOwnerMustFailWhenExceptionIsThrownDataProvider(): array
     {
@@ -201,7 +195,7 @@ class GetResourceOwnerTest extends Unit
      */
     protected function createOauthAzureToSessionClientBridgeMock(
         string $state,
-        bool $validState = true,
+        bool $validState = true
     ): OauthAzureToSessionClientInterface {
         $oauthAzureToSessionClientBridgeMock = $this
             ->getMockBuilder(OauthAzureToSessionClientInterface::class)
@@ -239,7 +233,7 @@ class GetResourceOwnerTest extends Unit
      */
     protected function createOauthAzureToLeagueOauthAzureProviderAdapterWithExceptionsMock(
         bool $getAccessTokenThrowsException = false,
-        bool $getResourceOwnerThrowsException = false,
+        bool $getResourceOwnerThrowsException = false
     ): OauthAzureToOauthAdapterInterface {
         $oauthAzureToLeagueOauthAzureProviderAdapterMock = $this
             ->getMockBuilder(OauthAzureToOauthAdapterInterface::class)

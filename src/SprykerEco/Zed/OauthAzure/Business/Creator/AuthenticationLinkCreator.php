@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Business\Creator;
 
 use Generated\Shared\Transfer\OauthAuthenticationLinkTransfer;
@@ -49,7 +47,7 @@ class AuthenticationLinkCreator implements AuthenticationLinkCreatorInterface
         OauthAzureConfig $oauthAzureConfig,
         OauthAzureToOauthAdapterInterface $oauthAdapter,
         StateParameterGeneratorInterface $stateParameterGenerator,
-        StateParameterWriterInterface $stateParameterWriter,
+        StateParameterWriterInterface $stateParameterWriter
     ) {
         $this->oauthAzureConfig = $oauthAzureConfig;
         $this->oauthAdapter = $oauthAdapter;
@@ -79,7 +77,7 @@ class AuthenticationLinkCreator implements AuthenticationLinkCreatorInterface
      * @return \Generated\Shared\Transfer\OauthAuthenticationLinkTransfer
      */
     protected function createAuthenticationLinkTransfer(
-        string $href,
+        string $href
     ): OauthAuthenticationLinkTransfer {
         return (new OauthAuthenticationLinkTransfer())
             ->setHref($href)

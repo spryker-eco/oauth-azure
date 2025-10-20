@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Business;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
@@ -49,7 +47,7 @@ class OauthAzureBusinessFactory extends AbstractBusinessFactory
     {
         return new StateParameterGenerator(
             $this->getUtilTextService(),
-            $this->createStateParameterSessionKeyBuilder(),
+            $this->createStateParameterSessionKeyBuilder()
         );
     }
 
@@ -70,7 +68,7 @@ class OauthAzureBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->getOauthProvider(),
             $this->createStateParameterGenerator(),
-            $this->createStateParameterWriter(),
+            $this->createStateParameterWriter()
         );
     }
 
@@ -98,7 +96,7 @@ class OauthAzureBusinessFactory extends AbstractBusinessFactory
         return new ResourceOwnerReader(
             $this->getOauthProvider(),
             $this->createResourceOwnerMapper(),
-            $this->createStateParameterValidator(),
+            $this->createStateParameterValidator()
         );
     }
 

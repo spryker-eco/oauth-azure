@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Dependency\Service;
 
 class OauthAzureToUtilTextServiceBridge implements OauthAzureToUtilTextServiceInterface
@@ -29,7 +27,7 @@ class OauthAzureToUtilTextServiceBridge implements OauthAzureToUtilTextServiceIn
      *
      * @return string
      */
-    public function generateRandomString(int $length): string
+    public function generateRandomString($length)
     {
         return $this->utilTextService->generateRandomString($length);
     }

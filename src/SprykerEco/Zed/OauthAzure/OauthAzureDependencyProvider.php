@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
@@ -33,7 +31,7 @@ class OauthAzureDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container): Container
+    public function provideBusinessLayerDependencies(Container $container)
     {
         $container = parent::provideBusinessLayerDependencies($container);
 

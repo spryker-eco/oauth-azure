@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Business\Reader;
 
 use Generated\Shared\Transfer\ResourceOwnerRequestTransfer;
@@ -46,7 +44,7 @@ class ResourceOwnerReader implements ResourceOwnerReaderInterface
     public function __construct(
         OauthAzureToOauthAdapterInterface $oauthAdapter,
         ResourceOwnerMapperInterface $resourceOwnerMapper,
-        StateParameterValidatorInterface $stateParameterValidator,
+        StateParameterValidatorInterface $stateParameterValidator
     ) {
         $this->oauthAdapter = $oauthAdapter;
         $this->resourceOwnerMapper = $resourceOwnerMapper;
@@ -59,7 +57,7 @@ class ResourceOwnerReader implements ResourceOwnerReaderInterface
      * @return \Generated\Shared\Transfer\ResourceOwnerResponseTransfer
      */
     public function getResourceOwner(
-        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer,
+        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
     ): ResourceOwnerResponseTransfer {
         $resourceOwnerRequestTransfer
             ->requireCode()
@@ -83,20 +81,20 @@ class ResourceOwnerReader implements ResourceOwnerReaderInterface
      */
     protected function fetchResourceOwner(
         ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer,
-        ResourceOwnerResponseTransfer $resourceOwnerResponseTransfer,
+        ResourceOwnerResponseTransfer $resourceOwnerResponseTransfer
     ): ResourceOwnerResponseTransfer {
         try {
             /** @var \League\OAuth2\Client\Token\AccessToken $accessToken */
             $accessToken = $this->oauthAdapter->getAccessToken(
                 OauthAzureConfig::GRANT_TYPE_AUTHORIZATION_CODE,
-                ['code' => $resourceOwnerRequestTransfer->getCode()],
+                ['code' => $resourceOwnerRequestTransfer->getCode()]
             );
 
             $resourceOwner = $this->oauthAdapter->getResourceOwner($accessToken);
 
             $resourceOwnerTransfer = $this->resourceOwnerMapper->mapResourceOwnerToResourceOwnerTransfer(
                 $resourceOwner,
-                new ResourceOwnerTransfer(),
+                new ResourceOwnerTransfer()
             );
 
             return $resourceOwnerResponseTransfer->setResourceOwner($resourceOwnerTransfer);

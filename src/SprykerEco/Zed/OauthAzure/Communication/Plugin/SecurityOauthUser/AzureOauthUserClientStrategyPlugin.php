@@ -5,8 +5,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-declare(strict_types = 1);
-
 namespace SprykerEco\Zed\OauthAzure\Communication\Plugin\SecurityOauthUser;
 
 use Generated\Shared\Transfer\ResourceOwnerRequestTransfer;
@@ -52,7 +50,7 @@ class AzureOauthUserClientStrategyPlugin extends AbstractPlugin implements Oauth
      * @return \Generated\Shared\Transfer\ResourceOwnerResponseTransfer
      */
     public function getResourceOwner(
-        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer,
+        ResourceOwnerRequestTransfer $resourceOwnerRequestTransfer
     ): ResourceOwnerResponseTransfer {
         return $this->getFacade()->getResourceOwner($resourceOwnerRequestTransfer);
     }
