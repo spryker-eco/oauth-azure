@@ -5,6 +5,8 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
+declare(strict_types = 1);
+
 namespace SprykerEcoTest\Zed\OauthAzure\Business\Facade;
 
 use Codeception\Test\Unit;
@@ -44,15 +46,15 @@ class CreateAuthenticationLinkTest extends Unit
         //Assert
         $this->assertNotEmpty(
             $oauthAuthenticationLinkTransfer->getHref(),
-            'Expected that `href` attribute is provided.'
+            'Expected that `href` attribute is provided.',
         );
         $this->assertNotEmpty(
             $oauthAuthenticationLinkTransfer->getTarget(),
-            'Expected that `target` attribute is provided.'
+            'Expected that `target` attribute is provided.',
         );
         $this->assertNotEmpty(
             $oauthAuthenticationLinkTransfer->getText(),
-            'Expected that `text` attribute is provided.'
+            'Expected that `text` attribute is provided.',
         );
     }
 
@@ -61,10 +63,8 @@ class CreateAuthenticationLinkTest extends Unit
      */
     protected function createOauthAzureToSessionClientBridgeMock(): OauthAzureToSessionClientInterface
     {
-        $oauthAzureToSessionClientBridgeMock = $this
+        return $this
             ->getMockBuilder(OauthAzureToSessionClientInterface::class)
             ->getMock();
-
-        return $oauthAzureToSessionClientBridgeMock;
     }
 }

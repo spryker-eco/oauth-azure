@@ -5,6 +5,8 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
+declare(strict_types = 1);
+
 namespace SprykerEco\Zed\OauthAzure\Business\Mapper;
 
 use Generated\Shared\Transfer\ResourceOwnerTransfer;
@@ -22,7 +24,7 @@ class ResourceOwnerMapper implements ResourceOwnerMapperInterface
      */
     public function mapResourceOwnerToResourceOwnerTransfer(
         ResourceOwnerInterface $resourceOwner,
-        ResourceOwnerTransfer $resourceOwnerTransfer
+        ResourceOwnerTransfer $resourceOwnerTransfer,
     ): ResourceOwnerTransfer {
         $resourceOwnerData = $resourceOwner->toArray();
 

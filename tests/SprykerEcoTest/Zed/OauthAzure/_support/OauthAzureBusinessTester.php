@@ -5,6 +5,8 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
+declare(strict_types = 1);
+
 namespace SprykerEcoTest\Zed\OauthAzure;
 
 use Codeception\Actor;
@@ -49,7 +51,7 @@ class OauthAzureBusinessTester extends Actor
      * @return void
      */
     public function setOauthAzureToLeagueOauthAzureProviderAdapter(
-        OauthAzureToOauthAdapterInterface $oauthAdapter
+        OauthAzureToOauthAdapterInterface $oauthAdapter,
     ): void {
         $this->setDependency(OauthAzureDependencyProvider::OAUTH_PROVIDER, $oauthAdapter);
     }

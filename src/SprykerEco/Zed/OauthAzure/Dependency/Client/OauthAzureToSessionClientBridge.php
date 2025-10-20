@@ -5,6 +5,8 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
+declare(strict_types = 1);
+
 namespace SprykerEco\Zed\OauthAzure\Dependency\Client;
 
 class OauthAzureToSessionClientBridge implements OauthAzureToSessionClientInterface
@@ -28,7 +30,7 @@ class OauthAzureToSessionClientBridge implements OauthAzureToSessionClientInterf
      *
      * @return void
      */
-    public function set(string $name, $value)
+    public function set(string $name, $value): void
     {
         $this->sessionClient->set($name, $value);
     }

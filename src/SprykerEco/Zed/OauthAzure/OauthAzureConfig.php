@@ -5,6 +5,8 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
+declare(strict_types = 1);
+
 namespace SprykerEco\Zed\OauthAzure;
 
 use Spryker\Zed\Kernel\AbstractBundleConfig;
@@ -13,9 +15,11 @@ use SprykerEco\Shared\OauthAzure\OauthAzureConstants;
 class OauthAzureConfig extends AbstractBundleConfig
 {
     public const SESSION_KEY_STATE = 'Azure';
+
     public const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
 
     protected const AUTHENTICATION_LINK_TARGET = '_self';
+
     protected const AUTHENTICATION_LINK_TEXT = 'Login with Microsoft Azure Active Directory';
 
     /**
@@ -106,7 +110,7 @@ class OauthAzureConfig extends AbstractBundleConfig
     /**
      * @api
      *
-     * @return string[]
+     * @return array<string>
      */
     public function getScope(): array
     {
