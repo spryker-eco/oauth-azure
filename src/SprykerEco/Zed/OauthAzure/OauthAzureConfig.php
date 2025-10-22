@@ -13,9 +13,11 @@ use SprykerEco\Shared\OauthAzure\OauthAzureConstants;
 class OauthAzureConfig extends AbstractBundleConfig
 {
     public const SESSION_KEY_STATE = 'Azure';
+
     public const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
 
     protected const AUTHENTICATION_LINK_TARGET = '_self';
+
     protected const AUTHENTICATION_LINK_TEXT = 'Login with Microsoft Azure Active Directory';
 
     /**
@@ -111,5 +113,19 @@ class OauthAzureConfig extends AbstractBundleConfig
     public function getScope(): array
     {
         return ['openid profile'];
+    }
+
+    /**
+     * Specification:
+     * - The tenant for the OAuth azure provider.
+     * - Accepts 'common', 'organizations', 'consumers' or specific tenant ID.
+     *
+     * @api
+     *
+     * @return string
+     */
+    public function getTenant(): string
+    {
+        return $this->get(OauthAzureConstants::TENANT);
     }
 }

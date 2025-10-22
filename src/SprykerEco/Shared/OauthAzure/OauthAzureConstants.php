@@ -60,4 +60,13 @@ interface OauthAzureConstants
      * @api
      */
     public const PATH_TOKEN = 'OAUTH_AZURE:PATH_TOKEN';
+
+    /**
+     * Specification:
+     * - The tenant for the OAuth azure provider.
+     * - Accepts 'common', 'organizations', 'consumers' or specific tenant ID.
+     *
+     * @api
+     */
+    public const TENANT = 'OAUTH_AZURE:TENANT';
 }

@@ -23,6 +23,7 @@ class OauthAzureDependencyProvider extends AbstractBundleDependencyProvider
     public const CLIENT_SESSION = 'CLIENT_SESSION';
 
     public const SERVICE_UTIL_TEXT = 'SERVICE_UTIL_TEXT';
+
     public const OAUTH_PROVIDER = 'OAUTH_PROVIDER';
 
     /**
@@ -96,6 +97,7 @@ class OauthAzureDependencyProvider extends AbstractBundleDependencyProvider
             'pathAuthorize' => $this->getConfig()->getPathAuthorize(),
             'pathToken' => $this->getConfig()->getPathToken(),
             'scope' => $this->getConfig()->getScope(),
+            'tenant' => $this->getConfig()->getTenant(),
         ]);
     }
 }
